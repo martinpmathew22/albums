@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: albums
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: albums-app
+  template:
+    metadata:
+      labels:
+        app: albums-app
+    spec:
+      containers:
+      - name: albums
+        image: for_kuber:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8080
+        env:
+          - name: DB_HOST
+            value: "localhost:3306"
+          - name: DB_USER
+            value: "root"
+          - name: DB_PASS
+            value: "pass"
+          - name: DB_NAME
+            value: "recordings"
+      - name: mysql
+        image: mysql:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 3306
+        env:
+          - name: MYSQL_DATABASE
+            value: "recordings"
+          - name: MYSQL_ROOT_PASSWORD
+            value: "pass"
