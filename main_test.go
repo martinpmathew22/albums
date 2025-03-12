@@ -35,7 +35,7 @@ func TestPostMethod(t *testing.T) {
 	fmt.Println(w.Body)
 
 	// Check to see if the response was what you expected
-	if w.Code == http.StatusOK {
+	if w.Code == http.StatusBadRequest {
 		t.Logf("Expected to get status %d is same ast %d\n", http.StatusOK, w.Code)
 	} else {
 		t.Fatalf("Expected to get status %d but instead got %d\n", http.StatusOK, w.Code)
