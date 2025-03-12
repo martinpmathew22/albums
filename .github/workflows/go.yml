@@ -50,6 +50,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: martinpmathew22/albums_tests
+          ref: main
 
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v4
