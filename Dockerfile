@@ -1,12 +1,12 @@
 FROM golang:1.23
 
-WORKDIR /usr/src/app
+WORKDIR /app
 
 # pre-copy/cache go.mod for pre-downloading dependencies and only redownloading them in subsequent builds if they change
-COPY go.mod go.sum ./
+COPY . .
 RUN go mod download
 
-COPY . .
-RUN go build -v -o /usr/local/bin/app ./...
+RUN CGO_ENABLED=0 GOOS=linux go build -o /web-service-gin
+EXPOSE 8000
 
-CMD ["app"]
+CMD ["/web-service-gin"]
