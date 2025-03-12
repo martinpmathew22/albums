@@ -46,10 +46,14 @@ jobs:
     name: Integration tests
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
+      - name: "Setup environment for testing"
+        run: docker compose -f docker-compose.yml -d --wait
+
       - name: checkout integration repo
         uses: actions/checkout@v4
         with:
-          repository: martinpmathew22/albums_tests
+          repository: martinpmathew22/albums_tests.git
           ref: main
 
       - name: Set up Python ${{ matrix.python-version }}
