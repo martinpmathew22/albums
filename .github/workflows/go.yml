@@ -48,7 +48,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: "Setup environment for testing"
-        run: docker compose -f docker-compose.yml -d --wait
+        run: docker compose -f docker-compose.yml up -d --wait
 
       - name: checkout integration repo
         uses: actions/checkout@v4
